@@ -9,7 +9,7 @@ from scipy.integrate import odeint
 # simulating neuron behavior based on the Izhikevich neuron model.
 class Izhikievich:
     """docstring for Izhikievich."""
-    def __init__(self, tspan, T1, a, b, c, d, V, tau, i): # T1,
+    def __init__(self, tspan, T1, a, b, c, d, V, tau, i): 
         super(Izhikievich, self).__init__()
         self.tspan = tspan    
         self.T1 = T1 
@@ -24,7 +24,8 @@ class Izhikievich:
         
     ###################
     def simulation(self): #(tspan,T1,**kwargs): #also to be tested with Euler method
-        u=self.b*self.V
+        V=self.V
+        u=self.b*V
         VV=[]
         uu=[]
         #if II, II=[]
@@ -34,8 +35,8 @@ class Izhikievich:
             # if II:
             #     II_storing.append(-90+I)
             # Update equations
-            V = self.V + self.tau * (0.04 * self.V ** 2 + 5 * self.V + 140 - u + I)
-            u = u + self.tau * self.a * (self.b * self.V - u)
+            V = V + self.tau * (0.04 * V ** 2 + 5 * V + 140 - u + I)
+            u = u + self.tau * self.a * (self.b * V - u)
             # Reset condition
             if V > 30:
                 VV.append(30)
@@ -47,7 +48,7 @@ class Izhikievich:
             # if II_storing:
             #     return VV, uu, II_storing
             # else:
-            return VV, uu
+        return VV, uu
     
     ###############
     #plot and save membrane potential over time
@@ -60,5 +61,5 @@ class Izhikievich:
         plt.title(feature_name)
         plt.xlabel("Time span")
         plt.ylabel("Membrane potential")
-        plt.savefig(str('membrane potential/'+(feature_name.replace(" ", "_")).lower()+'.jpeg'), edgecolor='black', dpi=400, transparent=True)
+        plt.savefig(str('plots/'+(feature_name.replace(" ", "_")).lower()+'.jpeg'), edgecolor='black', dpi=400, transparent=True)
         plt.show()

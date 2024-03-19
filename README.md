@@ -7,7 +7,7 @@ The objectives of the CNS course include bio-inspired neural modelling, spiking 
 This repository stores the assignments, based on material from the laboratories' experience, to be delivered as the hands-on part of the exam.
 
 ### Lab 1
--  **Assignment:** Implementing Spiking Neurons using Izhikevich's Model
+-  **Assignment:** implementing Spiking Neurons using Izhikevich's Model
     1) Implement the Izhikevich’s model
     2) Develop all the 20 neuro-computational features of biological neurons using the model developed at point _1_ and plot:
         - the resulting membrane potential's time courses into individual figures (one figure for each neuro-computational feature);

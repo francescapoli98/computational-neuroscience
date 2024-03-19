@@ -12,10 +12,15 @@ This repository stores the assignments, based on material from the laboratories'
     2) Develop all the 20 neuro-computational features of biological neurons using the model developed at point _1_ and plot:
         - the resulting membrane potential's time courses into individual figures (one figure for each neuro-computational feature);
         - the phase portraits that correspond to each of the neuro-computational features (one figure for each neuro-computational feature)
+
 Recall that the Izhikevich’s model is described by the following equations:
+
 $𝑑𝑢/𝑑𝑡 = 0. 04 𝑢^2 + 5𝑢 + 140 − 𝑤 + 𝐼$
+
 $𝑑𝑤/𝑑𝑡 = 𝑎(𝑏𝑢 − 𝑤)$
+
 $𝑖𝑓 (𝑢 ≥ 30)$
+
     $𝑢 ← 𝑐; 𝑤 ← 𝑤 + 𝑑$
 
 

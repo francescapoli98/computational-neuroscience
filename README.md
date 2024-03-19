@@ -24,8 +24,6 @@ $𝑖𝑓 (𝑢 ≥ 30):$
 $𝑢 ← 𝑐; 𝑤 ← 𝑤 + 𝑑$
 
 
-<!--### Lab 2
+### Lab 2
 -  **Assignment 1:** Implementing [...]
--  **Assignment 2:** Implementing [...]
--->
- 
+-  **Assignment 2:** Implementing [...]  

@@ -5,10 +5,9 @@ import matplotlib.pyplot as plt
 import scipy
 from scipy.integrate import odeint
 
-# The `Izhikievich` class in Python defines a model with simulation and plotting methods for
-# simulating neuron behavior based on the Izhikevich neuron model.
 class Izhikievich:
-    """docstring for Izhikievich."""
+    """The `Izhikievich` class in Python defines a model for simulating neuron behavior using the
+    Izhikevich neuron model and provides methods for simulation and plotting membrane potential over time."""
     def __init__(self, tspan, T1, a, b, c, d, V, tau, i): 
         super(Izhikievich, self).__init__()
         self.tspan = tspan    

@@ -24,9 +24,9 @@ $𝑖𝑓 (𝑢 ≥ 30):$
 $𝑢 ← 𝑐; 𝑤 ← 𝑤 + 𝑑$
 
 -  **Bonus assignment 1:**  implementing Liquid State Machines (LSM)
-    1) Sunspot task: consists in a next-step prediction (autoregressive, a particular case of transduction) on a time-series consisting in monthly averaged solar sunspots.
+    - Sunspot task: consists in a next-step prediction (autoregressive, a particular case of transduction) on a time-series consisting in monthly averaged solar sunspots.
 -  **Bonus assignment 2:**  implementing Spike-Time-Dependent Plasticity (STDP)
-    1)  Use a liquid of Izhikevich neurons and train the coupling of these neurons with a simplified version of the STDP algorithm. 
+    -  Use a liquid of Izhikevich neurons and train the coupling of these neurons with a simplified version of the STDP algorithm. 
 
 
 

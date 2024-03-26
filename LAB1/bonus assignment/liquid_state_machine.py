@@ -4,13 +4,20 @@ from numpy import ones
 import matplotlib.pyplot as plt
 
 class LSM:
-    def __init__(self):
+    """The LSM class implements a simulation of a spiking neural network using Leaky Integrate-and-Fire neurons. """
+    def __init__(self, **kwargs):
+        self.epochs=kwargs.get('epochs',"10")
+        self.units=kwargs.get('units',"100")
+        self.win_e=kwargs.get('win_e',"5")
+        self.win_i=kwargs.get('win_i',"2")
+        self.w_e=kwargs.get('w_e',"0.5")
+        self.w_i=kwargs.get('w_i',"1")
         self.Ne=800
         self.Ni=200
-        self.win_e=5
-        self.win_i=2
-        self.w_e=0.5
-        self.w_i=1
+        
+        
+                
+    def simulation(self,input):
         self.re = np.random.rand(self.Ne)
         self.ri = np.random.rand(self.Ni)
         self.a = np.concatenate((0.02*ones(self.Ne), 0.02+0.08*self.ri))
@@ -19,8 +26,7 @@ class LSM:
         self.d = np.concatenate((8-6*self.re**2, 2*np.ones(self.Ni)))
         self.v = -65*np.ones(self.Ne+self.Ni)  # Initial values of v
         self.u=self.v*self.b
-                
-    def simulation(self,input):
+        
         U = np.concatenate((self.win_e*np.ones(self.Ne), self.win_i*np.ones(self.Ni)))
         S = np.concatenate((self.w_e*np.random.rand(self.Ne+self.Ni, self.Ne), -self.w_i*np.random.rand(self.Ne+self.Ni, self.Ni)), axis=1)
         firings = []  # spike timings

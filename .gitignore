@@ -1,5 +1,5 @@
-LAB1/first_test.ipynb
-LAB1/TESTING MORE.ipynb
-
+tests/
 
 __pycache__
+
+.vscode/

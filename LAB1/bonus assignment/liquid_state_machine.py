@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class LSM:
     """The LSM class implements a simulation of a spiking neural network using Leaky Integrate-and-Fire neurons. """
-    def __init__(self, **kwargs):
+    def __init__(self, epochs:int, units:int, win_e: int, win_i: int, w_e:int, w_i:int):
         self.epochs=kwargs.get('epochs',"10")
         self.units=kwargs.get('units',"100")
         self.win_e=kwargs.get('win_e',"5")

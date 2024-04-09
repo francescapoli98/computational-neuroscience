@@ -1,12 +1,44 @@
 ''' '''
+import numpy as np
 
+''' The `HebbianLearning` class contains methods for implementing Hebbian, Oja and Subtractive Normalization learning rules in a
+neural network. '''
 class HebbianLearning:
-    def __init__(self,**kwargs):
-        w = random.uniform(low=-1, high=1, size=None)        
+    def __init__(self, **kwargs):
+        self.w_init = np.random.uniform(low=-1, high=1, size=(2,))
+        self.lr= 0.001
+        self.epochs=200
 
-    def hebbian_rule(self, w, lr):
-        w = w + (lr * u * v) 
+    def hebbian_rule(self, u, v, w):
+        w = w + (self.lr * u * v) 
         return w
+    
+    def oja_rule(self, u, v, w, alpha):
+        w = (v * u) - alpha * (np.power(v, 2) * w)
+        return w
+    
+    # def sub_norm(self, u, v, w, alpha):
+    #     w = v * u - (v * (self.one.T @ u) * self.one) / 2
+    #     return w
+    
+    
+    # def w_training(self,data):
+    #     w_set=[]
+    #     for i in range(epochs):
+    #     data = data[:, np.random.permutation(data.shape[1])]
+    #     w_old = w
+    #     for j in range(data.shape[1]):
+    #         u=data[:,j]
+    #         v=np.dot(u,w) 
+    #         w = hebbian_rule(u, v, w)
+    #         #plot
+    #         w_set.append(w)
+    #     if linalg.norm(w-w_old) < threshold:
+    #         print("Number of epochs runned:", i+1)
+    #         return w_set 
+    #         #break
+    #     return w_set
+        
     
     #def __call__():
         

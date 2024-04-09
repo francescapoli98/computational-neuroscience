@@ -14,27 +14,28 @@ class LSM:
         self.w_i=kwargs.get('w_i',"1")
         self.Ne=800
         self.Ni=200
+        #self.data = Xset
         
         
                 
-    def simulation(self,input):
-        self.re = np.random.rand(self.Ne)
-        self.ri = np.random.rand(self.Ni)
-        self.a = np.concatenate((0.02*ones(self.Ne), 0.02+0.08*self.ri))
-        self.b = np.concatenate((0.2*np.ones(self.Ne), 0.25-0.05*self.ri))
-        self.c = np.concatenate((-65+15*self.re**2, -65*np.ones(self.Ni)))
-        self.d = np.concatenate((8-6*self.re**2, 2*np.ones(self.Ni)))
-        self.v = -65*np.ones(self.Ne+self.Ni)  # Initial values of v
-        self.u=self.v*self.b
+    def simulation(self, data):
+        re = np.random.rand(self.Ne)
+        ri = np.random.rand(self.Ni)
+        a = np.concatenate((0.02*ones(self.Ne), 0.02+0.08*self.ri))
+        b = np.concatenate((0.2*np.ones(self.Ne), 0.25-0.05*self.ri))
+        c = np.concatenate((-65+15*self.re**2, -65*np.ones(self.Ni)))
+        d = np.concatenate((8-6*self.re**2, 2*np.ones(self.Ni)))
+        v = -65*np.ones(self.Ne+self.Ni)  # Initial values of v
+        u= v*b
         
         U = np.concatenate((self.win_e*np.ones(self.Ne), self.win_i*np.ones(self.Ni)))
         S = np.concatenate((self.w_e*np.random.rand(self.Ne+self.Ni, self.Ne), -self.w_i*np.random.rand(self.Ne+self.Ni, self.Ni)), axis=1)
         firings = []  # spike timings
         states = []  # here we construct the matrix of reservoir states
-        v=self.v
-        u=self.u
-        for t in range(len(input)):  # simulation of 1000 ms
-            I = input[t] * U
+        # v=self.v
+        # u=self.u
+        for t in range(len(data)):  # simulation of 1000 ms
+            I = data[t] * U
             fired = np.where(v >= 30)[0]  # indices of spikes
             firings.append(np.column_stack((t+np.zeros_like(fired), fired)))
             v[fired] = self.c[fired]

@@ -1,5 +1,7 @@
 ''' '''
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 ''' The `HebbianLearning` class contains methods for implementing Hebbian, Oja and Subtractive Normalization learning rules in a
 neural network. '''
@@ -22,7 +24,7 @@ class HebbianLearning:
     #     return w
     
     
-    # def w_training(self,data):
+    # def w_training(self,data) OR __call__():
     #     w_set=[]
     #     for i in range(epochs):
     #     data = data[:, np.random.permutation(data.shape[1])]
@@ -37,19 +39,17 @@ class HebbianLearning:
     #         print("Number of epochs runned:", i+1)
     #         return w_set 
     #         #break
-    #     return w_set
-        
-    
-    #def __call__():
-        
+    #     return w_set        
 
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
 '''This class in Python contains methods for calculating principal components and plotting eigenvectors.'''
 class Plots:
     def __init__(self, **kwargs):
-        finalW=self.final_w
+        self.finalW = final_w
         
     
     def princ_comp(self, dset):
@@ -71,7 +71,7 @@ class Plots:
         axs[0].plt.scatter(dset[:, 0], dset[:, 1])#, label='Training Data')
         axs[0].set_title('Training data points')
 
-        axs[1].plt.quiver(0, 0, finalW[0], finalW[1], angles='xy', scale_units='xy', scale=1, color='r')#, label='Final Weight Vector')
+        axs[1].plt.quiver(0, 0, self.finalW[0], self.finalW[1], angles='xy', scale_units='xy', scale=1, color='r')#, label='Final Weight Vector')
         axs[1].set_title('Final weight vector')
 
         axs[2].plt.quiver(0, 0, pc[0], pc[1], angles='xy', scale_units='xy', scale=1, color='g')#, label='Principal Eigenvector')

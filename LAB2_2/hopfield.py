@@ -5,6 +5,8 @@ Hopfield network, i.e., the storage phase (learning) and the retrieval phase
 
 Note: in the code you need to include the computation of the overlap functions (with
 respect to the training patterns) and of the energy function. 
+
+Use the 3 input vectors p0, p1 and p2 (from the corresponding csv files in the archive) to train the Hopfield network
 '''
 
 import numpy as np
@@ -60,6 +62,6 @@ class Hopfield:
             overlap = self.overlap_func(x) 
             #energy
             energy = self.energy_func(x, w)
-        overlaps.append(overlap)
-        energies.append(energy)
-        print(overlaps, energies, x)
+            overlaps.append(overlap)
+            energies.append(energy)
+        return(overlaps, energies, x) 

@@ -3,8 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-''' The `HebbianLearning` class contains methods for implementing Hebbian, Oja and Subtractive Normalization learning rules in a
-neural network. '''
+
+# The `HebbianLearning` class implements Hebbian learning rules such as Hebbian, Oja, and subtractive
+# normalization.
 class HebbianLearning:
     def __init__(self, alpha=0, one=0, **kwargs):
         self.w_init = np.random.uniform(low=-1, high=1, size=(2,))
@@ -24,4 +25,6 @@ class HebbianLearning:
     def sub_norm(self, u, v, w):
         w = v * u - (v * (self.one.T @ u) * self.one) / 2
         return w
+    
+    def 
     

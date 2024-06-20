@@ -75,21 +75,6 @@ class Izhikievich:
         return VV, uu
     
     
-    # def update(self, I, V, u, VV, uu):
-    #     # Update equations
-    #     V = V + self.tau * (0.04 * V ** 2 + 5 * V + 140 - u + I)
-    #     u = u + self.tau * self.a * (self.b * V - u)
-    #     if V > 30:
-    #         VV.append(30)
-    #         V = self.c
-    #         u = u + self.d
-    #     else:
-    #         VV.append(V)
-    #     uu.append(u)
-    #     return VV, uu
-    
-    
-    
     def class1ex(self):
         V=self.V
         u=self.b*V
@@ -98,6 +83,7 @@ class Izhikievich:
         II = []
         for t in self.tspan:
             I = self.i * (t-self.T1) if t > self.T1 else 0
+            # I = inputcurrent(t)
             # II.append(-90+I)
             self.ii_storing.append(-90+I)
             # Update equations
@@ -111,7 +97,6 @@ class Izhikievich:
             else:
                 VV.append(V)
             uu.append(u)
-        # print(self.ii_storing)
         return VV, uu
     
     

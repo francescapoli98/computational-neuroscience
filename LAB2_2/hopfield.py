@@ -14,11 +14,12 @@ from numpy import einsum, fill_diagonal, random
 
 
 class Hopfield:
-    def __init__(self, img: np.array, patterns: np.array, bias: float):
+    def __init__(self, img: np.array, original:np.array, patterns: np.array, bias: float):
         self.x = img #input_data (the original p0, p1, p2 then distorted into x0, x1, x2)
+        self.orig = original #original image to be reconstructed
         self.N =  self.x.shape[0] #number of neurons (1024)
         self.p = patterns #set of patterns
-        self.epochs = 100
+        self.epochs = 2
         self.bias = bias
     
     
@@ -66,34 +67,30 @@ class Hopfield:
         :return: three values: a list of overlaps, a list of energies, and the updated state vector x.
         """
         w = self.storage()
-        old_x=None
+        # old_x=None
         new_x=np.copy(self.x)
-        # states_set=[(self.x).copy()]
-        
+        states_set=[np.copy(self.x)]
         overlaps = []
         energies = []
         for epoch in range(self.epochs):
             indexes = np.random.permutation(range(self.N)) #vector of random indexes for state update
             #for each epoch I calculate the overlap functions and the energy function
             #for n in x: #for each set of states correspondent to a pattern in the neurons' set
-            old_x=new_x.copy()
+            # old_x=new_x.copy()
             for ind in indexes: 
                 #get a random neuron and update its state through the update function
                 update = np.sign(np.dot(w[ind], new_x) + self.bias)
                 new_x[ind] = update   
-                # states_set.append(new_x.copy)
                 #overlap
                 overlap = self.overlap_func(new_x) 
                 #energy
                 energy = self.energy_func(new_x, w)
                 overlaps.append(overlap)
                 energies.append(energy)  
+                states_set.append(new_x)
             
-            if np.array_equal(old_x, new_x):
-                # print(f'Convergency reached at epoch {epoch}') 
-                return(overlaps,energies, new_x)
-            
-        if np.array_equal(self.x, new_x):
-            print('ERROR: there have been no updates!')       
-        return(overlaps,energies, new_x) 
+                if np.array_equal(self.orig, new_x):
+                    return(overlaps,energies, states_set)
+        
+        return(overlaps,energies, states_set) 
     

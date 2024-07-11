@@ -46,7 +46,6 @@ class Hopfield:
         each pattern.
         """
         o = [(pattern @ x / self.N) for pattern in self.p]
-        # o = (self.p @ x) / self.N
         return o
     
     def energy_func(self, x: np.array, w: np.array):
@@ -76,7 +75,6 @@ class Hopfield:
             indexes = np.random.permutation(range(self.N)) #vector of random indexes for state update
             #for each epoch I calculate the overlap functions and the energy function
             #for n in x: #for each set of states correspondent to a pattern in the neurons' set
-            # old_x=new_x.copy()
             for ind in indexes: 
                 #get a random neuron and update its state through the update function
                 update = np.sign(np.dot(w[ind], new_x) + self.bias)

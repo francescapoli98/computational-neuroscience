@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 
 class LSM:
     """The LSM class implements a simulation of a spiking neural network using Leaky Integrate-and-Fire neurons. """
-    def __init__(self, reg=None, **kwargs):#epochs:int, units:int, win_e: int, win_i: int, w_e:int, w_i:int):
+    def __init__(self, reg=None, **kwargs):
         # self.epochs=kwargs.get('epochs')#,"10")
         # self.units=kwargs.get('units')#,"100")
-        self.win_e=kwargs.get('win_e')#,"5")
-        self.win_i=kwargs.get('win_i')#,"2")
-        self.w_e=kwargs.get('w_e')#,"0.5")
-        self.w_i=kwargs.get('w_i')#,"1")
+        self.win_e=kwargs.get('win_e')
+        self.win_i=kwargs.get('win_i')
+        self.w_e=kwargs.get('w_e')
+        self.w_i=kwargs.get('w_i')
+        self.Ne=800     #kwargs.get('ne')
+        self.Ni=200     #kwargs.get('ni')
         self.reg = reg
-        self.Ne=800
-        self.Ni=200
         self.readout = np.random.rand(self.Ne + self.Ni)
         self.re = np.random.rand(self.Ne)
         self.ri = np.random.rand(self.Ni)
@@ -43,10 +43,9 @@ class LSM:
             states.append(v >= 30)
 
         firings = np.concatenate(firings)
-        # plt.plot(firings[:, 0], firings[:, 1], '.')
 
         # in the end states is 1000 x number of time steps
-        return states#, firings
+        return states
     
     def train(self, data, target):
         states = self._simulation(data)
@@ -57,5 +56,4 @@ class LSM:
             
         return states @ self.readout
     
- 
         

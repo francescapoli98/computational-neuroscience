@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # normalization.
 class HebbianLearning:
     def __init__(self, data_shape, alpha=0, one=0, theta=0.1, th_lr=0.01):
-        self.w_init = np.random.uniform(low=-1, high=1, size=data_shape) #np.random.uniform(data_shape, data_shape, size=(2,)) #np.random.uniform(low=-1, high=1, size=(2,))
+        self.w_init = np.random.uniform(low=-1, high=1, size=(data_shape,)) #np.random.uniform(data_shape, data_shape, size=(2,)) #np.random.uniform(low=-1, high=1, size=(2,))
         self.lr= 0.001
         # self.epochs=200
         self.alpha = alpha #oja rule
@@ -29,6 +29,7 @@ class HebbianLearning:
         return w
     
     def bcm(self, u, v, w):
+        # w = np.clip(w, -1e5, 1e5)
         v = w @ u
         self.theta += self.theta_lr * (np.power(v, 2) - self.theta)
         return v * u * (v - self.theta)

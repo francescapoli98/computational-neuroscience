@@ -10,7 +10,6 @@ utils/
 
 __init__.py
 
-*.pdf
+# *.pdf
 
 iliad.txt
-
